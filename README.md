@@ -57,7 +57,7 @@
         Arial, Helvetica, sans-serif;">¨ &nbsp; &nbsp; &nbsp; Internally document the code by adding comments</span></p>
 <p><span style="font-family: 
         Arial, Helvetica, sans-serif;">¨ &nbsp; &nbsp; &nbsp; Produce technical guide</span></p>
-
+<p></p>
 
 <h1>Test&nbsp;Plan&nbsp;log&nbsp;sheets</h1>
 <p>&nbsp;</p>
