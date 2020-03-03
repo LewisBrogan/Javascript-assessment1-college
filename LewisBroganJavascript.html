@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Assessment - Lewis Brogan</title>
+</head>
+<body>
+    <div id="data" style="display: block">
+        <input type="text" placeholder="Enter your forename" id="myForename">
+        <input type="text" placeholder="Enter your surname" id="mySurname">
+        <button type="button" id="setUser">Set users forename and surname</button>
+    </div>
+    <div id="menu" style="display: none">
+        <h3>Menu</h3>
+        <p>1. Display my username</p>
+        <p>2. Generate lottery number</p>
+        <p>3. Exit</p>
+        <button type="button" id="runProgram">Run Program</button>
+    </div>
+    <div id="end" style="display: none">
+        <p>Program ended.</p>
+    </div>
+</body>
+<script>
+    // grabs the button elements
+    const setUserBtn = document.getElementById("setUser");
+    const runProgramBtn = document.getElementById("runProgram");
+
+    // tells a variable that it will be used on menuPicker(), says if the user is in Menu or not
+    let inMenu = false;
+
+    // "click" listener on "Set users forename and surname" button
+    // this will set "Enter your forename" and "Enter your surname" display to none (which will make it invisible)
+    // and does menuOptions()
+    setUserBtn.addEventListener("click", function () {
+        document.getElementById("data").style.display = "none";
+        menuOptions();
+    });
+
+    // "click" listener on "Run Program" button, which will get the menuPicker() function
+    runProgramBtn.addEventListener("click", menuPicker);
+
+    // display the menu (the div is hidden by default)
+    function menuOptions() {
+        document.getElementById("menu").style.display = "block";
+    }
+
+    // prompt to choose options 1-3
+    function menuPicker() {
+        inMenu = true;
+        while (inMenu) {
+            const choice = prompt("Enter an option between 1-3");
+            // changes the user input to a number, unless null e.g. if choice === null, myChoice is null
+            const myChoice = (choice === null) ? null : parseInt(choice, 10);
+
+            switch (myChoice) {
+                case 1: // function 1
+                    opt1();
+                    break;
+                case 2: // function 2
+                    opt2();
+                    break;
+                case 3: // function 3
+                    opt3();
+                    break;
+                case null: // if cancelled is clicked, program will exit
+                    opt3();
+                    break;
+                default: // if the user inputs an invalid option
+                    alert("Invalid option, choose between 1-3");
+                    break;
+            }
+        }
+    }
+
+    // display username function
+    function opt1() {
+        // gets forename and surname from the inputs
+        const forename = document.getElementById("myForename").value;
+        const surname = document.getElementById("mySurname").value;
+        const string1 = forename.substr(0, 1); // return the first character from forename
+        const username = `${string1}${surname}`; // join string1 and surname
+        alert(`Your username is: ${username.toUpperCase()}`); // shows the username in an alert (uppercase)
+    }
+
+    // function will generate 6 numbers from 0 to 49
+    function opt2() {
+        let lottery; // define the lottery
+        for (i = 0; i < 6; i++) {
+            lottery = Math.floor(Math.random() * 49); // generate a random number from 0 to 49
+            alert(`Lottery number ${i + 1} is: ${lottery}`); // this displays the number in an alert
+        }
+    }
+
+    // exit menu and display 'end' div (program finished)
+    function opt3() {
+        inMenu = false; // inMenu to false so menuPicker() wont run
+        document.getElementById("menu").style.display = "none"; // menu is hidden
+        document.getElementById("end").style.display = "block"; // 'end' div is visible
+    }
+</script>
+</html> 
